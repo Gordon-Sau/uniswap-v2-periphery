@@ -152,6 +152,8 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
             address(this),
             deadline
         );
+        // transfer tokens to address(this) with removeLiquidityETHSupportingFeeOnTransferTokens can cuse problem
+        // https://cj.sina.com.cn/articles/view/6311913111/178382697020017z87
 
         TransferHelper.safeTransfer(token, to, amountToken);
 
