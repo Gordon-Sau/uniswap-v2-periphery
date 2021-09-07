@@ -208,7 +208,8 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
             address(this),
             deadline
         );
-        // TODO: why does it use IERC20(token).balanceOf(address(this) instead of amountToken?
+        // why does it use IERC20(token).balanceOf(address(this) instead of amountToken?
+        // fee-on-transfer token gets the fee causing amountToken != balanceOf(address(this))
         TransferHelper.safeTransfer(token, to, IERC20(token).balanceOf(address(this)));
         IWETH(WETH).withdraw(amountETH);
         TransferHelper.safeTransferETH(to, amountETH);
